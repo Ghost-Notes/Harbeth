@@ -30,7 +30,7 @@ public struct R {
     /// Read image resources
     public static func image(_ named: String, forResource: String = "Harbeth") -> C7Image? {
         let readImageblock = { (bundle: Bundle) -> C7Image? in
-            #if os(iOS) || os(tvOS) || os(watchOS)
+            #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
             return C7Image(named: named, in: bundle, compatibleWith: nil)
             #elseif os(macOS)
             return bundle.image(forResource: named)
@@ -51,7 +51,7 @@ public struct R {
     @available(iOS 11.0, macOS 10.13, *)
     public static func color(_ named: String, forResource: String = "Harbeth") -> C7Color? {
         let readColorblock = { (bundle: Bundle) -> C7Color? in
-            #if os(iOS) || os(tvOS) || os(watchOS)
+            #if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
             return C7Color.init(named: named, in: bundle, compatibleWith: nil)
             #elseif os(macOS)
             return C7Color.init(named: named, bundle: bundle)
@@ -106,7 +106,7 @@ extension R {
     
     /// Screen window width.
     public static var width: CGFloat {
-        #if canImport(UIKit)
+        #if canImport(UIKit) && !os(visionOS)
         return UIScreen.main.bounds.width
         #elseif os(macOS)
         return NSScreen.main?.visibleFrame.width ?? 0.0
@@ -117,7 +117,7 @@ extension R {
     
     /// Screen window height.
     public static var height: CGFloat {
-        #if canImport(UIKit)
+        #if canImport(UIKit) && !os(visionOS)
         return UIScreen.main.bounds.height
         #elseif os(macOS)
         return NSScreen.main?.visibleFrame.height ?? 0.0

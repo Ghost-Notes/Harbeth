@@ -16,7 +16,7 @@ extension Image {
     }
     
     public init(c7Image: C7Image) {
-        #if os(iOS)
+        #if os(iOS) || os(visionOS)
         self.init(uiImage: c7Image)
         #elseif os(macOS)
         self.init(nsImage: c7Image)

@@ -13,7 +13,7 @@ import Foundation
 @_exported import AVFoundation
 import ImageIO
 
-#if os(iOS) || os(tvOS) || os(watchOS)
+#if os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
 import UIKit
 public typealias C7View  = UIView
 public typealias C7Color = UIColor
